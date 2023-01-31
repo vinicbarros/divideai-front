@@ -10,6 +10,7 @@ import SignIn from "./pages/Sign-In";
 import SignUp from "./pages/Sign-Up";
 import { GlobalStyle } from "./style/GlobalStyle";
 import Home from "./pages/Home";
+import NewBill from "./pages/NewBill";
 
 function App() {
   const queryClient = new QueryClient();
@@ -49,7 +50,10 @@ function App() {
                 element={<Home />}
               />
               <Route path="/payments" />
-              <Route path="/new-bill" />
+              <Route
+                path="/new-bill"
+                element={<NewBill />}
+              />
               <Route path="/social" />
             </Route>
           </Routes>
