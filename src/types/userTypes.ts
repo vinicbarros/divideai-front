@@ -5,9 +5,11 @@ export type UserProviderParams = {
 };
 
 export type UserData = {
-  id: number;
-  name: string;
-  email: string;
+  user: {
+    id: number;
+    name: string;
+    email: string;
+  };
   token: string;
 };
 
