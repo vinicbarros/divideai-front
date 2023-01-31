@@ -39,8 +39,8 @@ export default function SignIn() {
 
     try {
       const loggedUser = await mutation.mutateAsync();
-      toast.success("Logado com  sucesso!");
       setLocalStorage({ string: "userData", data: loggedUser });
+      toast.success("Logado com  sucesso!");
       setDisable(false);
       navigate("/");
     } catch (err) {
