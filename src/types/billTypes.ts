@@ -25,3 +25,8 @@ export interface IShortBillMapped {
     userBill: number;
   };
 }
+
+export type CategoryType = {
+  id: number;
+  name: string;
+};
