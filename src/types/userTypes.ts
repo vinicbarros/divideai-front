@@ -1,5 +1,5 @@
 export type UserProviderParams = {
-  userData: UserData | null;
+  userData: () => UserData;
   oAuthSignIn: () => Promise<void>;
   setLocalStorage: (data: ILocalParams) => Promise<void>;
 };
