@@ -70,15 +70,6 @@ table {
   *:focus {
     outline: none;
   }
-  input {
-    border-radius: 5px;
-    width: 100%;
-    height: 100%;
-  }
-  button {
-    width: 100%;
-    height: 100%;
-  }
   a {
     text-decoration: none;
   }
