@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Button = styled.button<IButtonProps>`
-  width: 100%;
+  width: ${(props) => (props.width ? props.width : "100%")};
   border-radius: 40px;
   background-color: ${(props) => props.cor};
   color: ${(props) => props.fcor};
@@ -24,6 +24,7 @@ interface IButtonProps {
   fcor?: string;
   dcor?: string;
   border?: string;
+  width?: string;
 }
 
 export default Button;
