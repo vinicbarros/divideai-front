@@ -11,6 +11,7 @@ import SignUp from "./pages/Sign-Up";
 import { GlobalStyle } from "./style/GlobalStyle";
 import Home from "./pages/Home";
 import NewBill from "./pages/NewBill";
+import BillPage from "./pages/BillPage";
 
 function App() {
   const queryClient = new QueryClient();
@@ -53,6 +54,10 @@ function App() {
               <Route
                 path="/new-bill"
                 element={<NewBill />}
+              />
+              <Route
+                path="/bill/:billId"
+                element={<BillPage />}
               />
               <Route path="/social" />
             </Route>

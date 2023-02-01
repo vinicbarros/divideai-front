@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import dayjs from "dayjs";
 import "dayjs/locale/pt-br";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { IShortBillMapped } from "../types/billTypes";
 
@@ -9,8 +10,13 @@ export default function ShortBillComponent({
 }: {
   shortBill: IShortBillMapped;
 }) {
+  const navigate = useNavigate();
   return (
-    <ShortBillWrapper>
+    <ShortBillWrapper
+      onClick={() => {
+        navigate(`/bill/${shortBill.id}`);
+      }}
+    >
       <WrapInfoBox>
         <BillTitle>{shortBill.name}</BillTitle>
         <DividedBy>
