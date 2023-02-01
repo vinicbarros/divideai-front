@@ -53,7 +53,7 @@ export default function Home() {
         <WrapperTitle>Últimos pagamentos</WrapperTitle>
         <Wrapper>
           {data?.length > 0 ? (
-            data?.map((bill) => (
+            data?.slice(0, 4).map((bill) => (
               <ShortBillComponent
                 key={bill.bill.id}
                 shortBill={bill.bill}
