@@ -1,6 +1,5 @@
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup, User } from "firebase/auth";
 import { createContext, ReactNode, useContext } from "react";
-import { toast } from "react-toastify";
 import { auth } from "../firebase";
 import { logInWithOauth } from "../services/userServices";
 import { ILocalParams, UserData, UserProviderParams } from "../types/userTypes";
@@ -8,10 +7,6 @@ import { ILocalParams, UserData, UserProviderParams } from "../types/userTypes";
 const UserContext = createContext({} as UserProviderParams);
 
 export function UserContextProvider({ children }: { children: ReactNode }) {
-  const userData: UserData | null = JSON.parse(
-    localStorage.getItem("userData") as string
-  );
-
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
 
@@ -35,6 +30,10 @@ export function UserContextProvider({ children }: { children: ReactNode }) {
 
   const setLocalStorage = (data: ILocalParams) => {
     localStorage.setItem(data.string, JSON.stringify(data.data));
+  };
+
+  const userData = (): UserData => {
+    return JSON.parse(localStorage.getItem("userData") as string);
   };
 
   // eslint-disable-next-line react/jsx-no-constructed-context-values
