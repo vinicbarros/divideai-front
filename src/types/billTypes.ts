@@ -30,3 +30,22 @@ export type CategoryType = {
   id: number;
   name: string;
 };
+
+export interface ICreateBill {
+  name: string;
+  value: number;
+  categoryId: number;
+  billStatus: string;
+  expireDate: Date;
+  usersBill: {
+    userId: number;
+    name: string;
+    value: number;
+  }[];
+}
+
+export type UsersBill = {
+  name: string;
+  userId: number;
+  value: number;
+};

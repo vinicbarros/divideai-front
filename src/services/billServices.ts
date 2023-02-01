@@ -1,5 +1,5 @@
 import { createAuthHeader } from "../helpers/createAuthHeader";
-import { CategoryType, ShortBill } from "../types/billTypes";
+import { CategoryType, ICreateBill, ShortBill } from "../types/billTypes";
 import api from "./api";
 
 export async function getShortBills(): Promise<ShortBill[]> {
@@ -16,4 +16,12 @@ export async function getBillsCategories(): Promise<CategoryType[]> {
   const response = await api.get("/bill/category/find", config);
 
   return response.data as CategoryType[];
+}
+
+export async function postNewBill(body: ICreateBill) {
+  const config = createAuthHeader();
+
+  const response = await api.post("/bill", body, config);
+
+  return response.data;
 }
