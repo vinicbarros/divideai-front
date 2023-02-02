@@ -14,7 +14,7 @@ import ShortBillComponent from "../components/ShortBill";
 import notFoundImage from "../assets/images/not_found.svg";
 
 export default function Home() {
-  const { data, isLoading, error } = useQuery("bill", getShortBills, {
+  const { data, isLoading, error } = useQuery("bills", getShortBills, {
     retry: false,
     onError: (err: AxiosError) => err,
   });
@@ -75,7 +75,7 @@ export default function Home() {
   );
 }
 
-const Wrapper = styled.section`
+export const Wrapper = styled.section`
   width: 90%;
   margin-top: 10px;
   margin-inline: auto;
@@ -86,7 +86,7 @@ const Wrapper = styled.section`
   border-radius: 10px;
 `;
 
-const WrapperTitle = styled.h4`
+export const WrapperTitle = styled.h4`
   width: 90%;
   margin-inline: auto;
   color: #2a2a2a;
@@ -95,7 +95,7 @@ const WrapperTitle = styled.h4`
 `;
 
 const TopBox = styled.div`
-  background-color: #304fff;
+  background-color: #0369c9;
   height: 300px;
   width: 100%;
 `;

@@ -12,6 +12,9 @@ export default function Navbar() {
         <RiHomeLine
           size={30}
           style={{ color: "#828282" }}
+          onClick={() => {
+            navigate("/");
+          }}
         />
         <MdOutlinePayments
           size={30}
@@ -27,6 +30,9 @@ export default function Navbar() {
         <HiOutlineUsers
           size={30}
           style={{ color: "#828282" }}
+          onClick={() => {
+            navigate("/social");
+          }}
         />
         <HiOutlineUser
           size={30}
@@ -62,7 +68,7 @@ const Plus = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #406bfb;
+  background-color: #0369c9;
   display: flex;
   align-items: center;
   justify-content: center;

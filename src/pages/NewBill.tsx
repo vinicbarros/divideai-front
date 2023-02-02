@@ -15,7 +15,7 @@ import Button from "../style/Button";
 import { ICreateBill, UsersBill } from "../types/billTypes";
 
 export default function NewBill() {
-  const { data, isLoading } = useQuery("categories", getBillsCategories, {
+  const { data } = useQuery("categories", getBillsCategories, {
     retry: false,
   });
 
@@ -196,7 +196,7 @@ export default function NewBill() {
               Cancelar
             </Button>
             <Button
-              cor="#406bfb"
+              cor="#0369C9"
               fcor="#ffffff"
               border="none"
               type="submit"

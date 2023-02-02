@@ -176,7 +176,7 @@ const Form = styled.form`
 const Input = styled.input`
   width: 100%;
   padding: 16px;
-  border: 1px solid #406bfb;
+  border: 1px solid #0369c9;
   outline: none;
   color: #2a2a2a;
   font-size: 18px;
@@ -190,7 +190,7 @@ const Input = styled.input`
 const SubTitle = styled.h4`
   text-align: center;
   margin-top: 15px;
-  color: #406bfb;
+  color: #0369c9;
   text-decoration: underline;
   font-weight: 600;
 `;
