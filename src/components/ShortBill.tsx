@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import "dayjs/locale/pt-br";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import formattedValue from "../helpers/formatValue";
 import { IShortBillMapped } from "../types/billTypes";
 
 export default function ShortBillComponent({
@@ -25,7 +26,7 @@ export default function ShortBillComponent({
         </DividedBy>
       </WrapInfoBox>
       <WrapInfoBox>
-        <BillValue>R$ {shortBill.value / 100}</BillValue>
+        <BillValue>{formattedValue(shortBill.value)}</BillValue>
         <BillDate>{dayjs(shortBill.createdAt).format("DD/MM/YYYY")}</BillDate>
       </WrapInfoBox>
     </ShortBillWrapper>
@@ -82,4 +83,5 @@ const BillValue = styled.h3`
 const BillDate = styled.h4`
   color: #838383;
   font-size: 14px;
+  text-align: right;
 `;
