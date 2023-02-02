@@ -17,3 +17,12 @@ export interface ILocalParams {
   string: string;
   data: any;
 }
+
+export type UserBillType = {
+  value: number;
+  users: {
+    name: string;
+    id: number;
+  };
+  paymentStatus: string;
+};
