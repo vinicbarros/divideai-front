@@ -49,3 +49,23 @@ export type UsersBill = {
   userId: number;
   value: number;
 };
+
+export type BillType = {
+  name: string;
+  value: number;
+  ownerId: number;
+  expireDate: Date;
+  billStatus: string;
+  category: {
+    name: string;
+  };
+  userBill: {
+    value: number;
+    users: {
+      name: string;
+      id: number;
+    };
+    paymentStatus: string;
+  }[];
+  id: number;
+};
