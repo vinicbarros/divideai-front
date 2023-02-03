@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import { RiHomeLine } from "react-icons/ri";
 import { MdOutlinePayments } from "react-icons/md";
 import { HiOutlineUsers, HiOutlineUser } from "react-icons/hi";
-import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const navigate = useNavigate();
+
   return (
     <Container>
       <Wrapper>
