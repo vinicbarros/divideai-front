@@ -20,6 +20,9 @@ export default function Navbar() {
         <MdOutlinePayments
           size={30}
           style={{ color: "#828282" }}
+          onClick={() => {
+            navigate("/payments");
+          }}
         />
         <Plus
           onClick={() => {

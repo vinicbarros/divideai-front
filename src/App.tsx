@@ -13,6 +13,7 @@ import Home from "./pages/Home";
 import NewBill from "./pages/NewBill";
 import BillPage from "./pages/BillPage";
 import SocialPage from "./pages/SocialPage";
+import History from "./pages/History";
 
 function App() {
   const queryClient = new QueryClient();
@@ -51,7 +52,10 @@ function App() {
                 path="/"
                 element={<Home />}
               />
-              <Route path="/payments" />
+              <Route
+                path="/payments"
+                element={<History />}
+              />
               <Route
                 path="/new-bill"
                 element={<NewBill />}
