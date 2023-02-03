@@ -8,10 +8,8 @@ import { useEffect, useState } from "react";
 import LoadingPage from "../components/LoadingPage";
 import Navbar from "../components/Navbar";
 import PrivateContainer from "../components/PrivateContainer";
-import { UserAuth } from "../contexts/UserContext";
 import { getShortBills } from "../services/billServices";
-import ShortBillComponent from "../components/ShortBill";
-import notFoundImage from "../assets/images/not_found.svg";
+import MappedBill from "../components/MappedBill";
 
 export default function Home() {
   const { data, isLoading, error } = useQuery("bills", getShortBills, {
@@ -51,40 +49,12 @@ export default function Home() {
           </TopWrapBox>
         </TopBox>
         <WrapperTitle>Últimos pagamentos</WrapperTitle>
-        <Wrapper>
-          {data?.length > 0 ? (
-            data?.slice(0, 4).map((bill) => (
-              <ShortBillComponent
-                key={bill.bill.id}
-                shortBill={bill.bill}
-              />
-            ))
-          ) : (
-            <NotFoundBox>
-              <h5>Você ainda não tem nenhuma conta, crie uma!</h5>
-              <ImageBox
-                src={notFoundImage}
-                alt="not found"
-              />
-            </NotFoundBox>
-          )}
-        </Wrapper>
+        <MappedBill data={data.slice(0, 4)} />
       </PrivateContainer>
       <Navbar />
     </>
   );
 }
-
-export const Wrapper = styled.section`
-  width: 90%;
-  margin-top: 10px;
-  margin-inline: auto;
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffff;
-
-  border-radius: 10px;
-`;
 
 export const WrapperTitle = styled.h4`
   width: 90%;
@@ -114,23 +84,4 @@ const WelcomeText = styled.h4`
   font-weight: bold;
   font-size: 18px;
   width: 150px;
-`;
-
-const NotFoundBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 420px;
-
-  h5 {
-    margin-block: 50px;
-    text-align: center;
-    width: 200px;
-    color: #fdd835;
-    font-family: "Poppins";
-  }
-`;
-
-const ImageBox = styled.img`
-  width: 250px;
 `;
