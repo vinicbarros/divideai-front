@@ -69,7 +69,7 @@ const BillTitle = styled.h2`
 const DividedBy = styled.p`
   color: #838383;
   font-weight: 400;
-  font-size: 10px;
+  font-size: 12px;
 `;
 
 const BillValue = styled.h3`
