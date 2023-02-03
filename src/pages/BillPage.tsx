@@ -9,7 +9,8 @@ import PrivateContainer from "../components/PrivateContainer";
 import UserBillComponent from "../components/UserBillComponent";
 import formattedValue from "../helpers/formatValue";
 import { getBill } from "../services/billServices";
-import { Wrapper, WrapperTitle } from "./Home";
+import { Wrapper } from "../components/MappedBill";
+import { WrapperTitle } from "./Home";
 
 export default function BillPage() {
   const { billId } = useParams();

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable consistent-return */
 import { useQuery, useQueryClient } from "react-query";
 import styled from "styled-components";
@@ -17,7 +18,7 @@ export default function SocialPage() {
   });
   const [socialSection, setSocialSection] = useState(true);
 
-  if (!data) return;
+  if (!data) return <></>;
 
   return (
     <>
