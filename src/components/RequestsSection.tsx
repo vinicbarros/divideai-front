@@ -49,6 +49,7 @@ export default function RequestsSection({
     },
     {
       onSuccess: () => {
+        queryClient.refetchQueries("friendList");
         queryClient.refetchQueries("friendRequest");
       },
     }
