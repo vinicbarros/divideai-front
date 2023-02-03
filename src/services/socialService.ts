@@ -1,10 +1,5 @@
 import { createAuthHeader } from "../helpers/createAuthHeader";
-import {
-  FriendList,
-  FriendRequest,
-  IFriendResponse,
-  SendedFriendRequest,
-} from "../types/socialType";
+import { FriendList, IFriendResponse } from "../types/socialType";
 import api from "./api";
 
 export async function getFriendsList(): Promise<FriendList[]> {
@@ -23,20 +18,20 @@ export async function sendFriendRequest(friendId: number) {
   return response;
 }
 
-export async function getSendedFriendRequest(): Promise<SendedFriendRequest[]> {
+export async function getSendedFriendRequest(): Promise<FriendList[]> {
   const config = createAuthHeader();
 
   const response = await api.get("/friend/send", config);
 
-  return response.data as SendedFriendRequest[];
+  return response.data as FriendList[];
 }
 
-export async function getFriendRequest(): Promise<FriendRequest[]> {
+export async function getFriendRequest(): Promise<FriendList[]> {
   const config = createAuthHeader();
 
   const response = await api.get("/friend/request", config);
 
-  return response.data as FriendRequest[];
+  return response.data as FriendList[];
 }
 
 export async function acceptRejectFriend(body: IFriendResponse) {
