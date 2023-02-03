@@ -12,6 +12,7 @@ import { GlobalStyle } from "./style/GlobalStyle";
 import Home from "./pages/Home";
 import NewBill from "./pages/NewBill";
 import BillPage from "./pages/BillPage";
+import SocialPage from "./pages/SocialPage";
 
 function App() {
   const queryClient = new QueryClient();
@@ -59,7 +60,10 @@ function App() {
                 path="/bill/:billId"
                 element={<BillPage />}
               />
-              <Route path="/social" />
+              <Route
+                path="/social"
+                element={<SocialPage />}
+              />
             </Route>
           </Routes>
         </BrowserRouter>
