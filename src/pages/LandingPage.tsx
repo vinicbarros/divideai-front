@@ -30,7 +30,7 @@ export default function LandingPage() {
           pagamentos compartilhados!
         </Subtitle>
         <Button
-          cor="#406bfb"
+          cor="#0369c9"
           fcor="#ffffff"
           border="none"
           onClick={() => {
@@ -41,8 +41,8 @@ export default function LandingPage() {
         </Button>
         <Button
           cor="#ffffff"
-          fcor="#406bfb"
-          border="2px solid #406bfb"
+          fcor="#0369c9"
+          border="2px solid #0369c9"
           onClick={() => {
             navigate("/sign-up");
           }}

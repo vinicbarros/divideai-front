@@ -78,7 +78,7 @@ export default function SignIn() {
           />
           {error.length > 0 ? <ErrorText>{error}</ErrorText> : <></>}
           <Button
-            cor="#406bfb"
+            cor="#0369c9"
             border="none"
             fcor="#ffffff"
             dcor="#0f1e52"
