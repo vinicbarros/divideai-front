@@ -1,29 +1,44 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import { RiHomeLine } from "react-icons/ri";
-import { MdOutlinePayments } from "react-icons/md";
-import { HiOutlineUsers, HiOutlineUser } from "react-icons/hi";
+import { useLocation, useNavigate } from "react-router-dom";
+import { RiHomeLine, RiHomeFill } from "react-icons/ri";
+import { MdOutlinePayments, MdPayments } from "react-icons/md";
+import { HiOutlineUsers, HiOutlineUser, HiUser, HiUsers } from "react-icons/hi";
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const path = useLocation().pathname;
 
   return (
     <Container>
       <Wrapper>
-        <RiHomeLine
-          size={30}
-          style={{ color: "#828282" }}
-          onClick={() => {
-            navigate("/");
-          }}
-        />
-        <MdOutlinePayments
-          size={30}
-          style={{ color: "#828282" }}
-          onClick={() => {
-            navigate("/payments");
-          }}
-        />
+        {path === "/" ? (
+          <RiHomeFill
+            size={30}
+            style={{ color: "#0369c9" }}
+          />
+        ) : (
+          <RiHomeLine
+            size={30}
+            style={{ color: "#828282" }}
+            onClick={() => {
+              navigate("/");
+            }}
+          />
+        )}
+        {path === "/payments" ? (
+          <MdPayments
+            size={30}
+            style={{ color: "#0369c9" }}
+          />
+        ) : (
+          <MdOutlinePayments
+            size={30}
+            style={{ color: "#828282" }}
+            onClick={() => {
+              navigate("/payments");
+            }}
+          />
+        )}
         <Plus
           onClick={() => {
             navigate("/new-bill");
@@ -31,17 +46,34 @@ export default function Navbar() {
         >
           +
         </Plus>
-        <HiOutlineUsers
-          size={30}
-          style={{ color: "#828282" }}
-          onClick={() => {
-            navigate("/social");
-          }}
-        />
-        <HiOutlineUser
-          size={30}
-          style={{ color: "#828282" }}
-        />
+        {path === "/social" ? (
+          <HiUsers
+            size={30}
+            style={{ color: "#0369c9" }}
+          />
+        ) : (
+          <HiOutlineUsers
+            size={30}
+            style={{ color: "#828282" }}
+            onClick={() => {
+              navigate("/social");
+            }}
+          />
+        )}
+        {path === "/user" ? (
+          <HiUser
+            size={30}
+            style={{ color: "#0369c9" }}
+          />
+        ) : (
+          <HiOutlineUser
+            size={30}
+            style={{ color: "#828282" }}
+            onClick={() => {
+              navigate("/user");
+            }}
+          />
+        )}
       </Wrapper>
     </Container>
   );
