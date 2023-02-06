@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import formattedValue from "../helpers/formatValue";
 import { IShortBillMapped } from "../types/billTypes";
+import Category from "./Category";
 
 export default function ShortBillComponent({
   shortBill,
@@ -19,6 +20,7 @@ export default function ShortBillComponent({
       }}
     >
       <WrapInfoBox>
+        <Category name={shortBill.category.name} />
         <BillTitle>{shortBill.name}</BillTitle>
         <DividedBy>
           Dividido por {shortBill._count.userBill}{" "}
@@ -43,7 +45,7 @@ const ShortBillWrapper = styled.main`
   align-items: center;
   justify-content: space-between;
 
-  font-family: "Inter";
+  font-family: "Poppins";
   letter-spacing: 0.01cm;
 
   border-radius: 10px;
@@ -69,7 +71,7 @@ const BillTitle = styled.h2`
 const DividedBy = styled.p`
   color: #838383;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
 `;
 
 const BillValue = styled.h3`

@@ -1,29 +1,46 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 import { AxiosError } from "axios";
 import dayjs from "dayjs";
-import { useQuery, useQueryClient } from "react-query";
-import { useParams } from "react-router-dom";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+import Swal from "sweetalert2";
+import { FaTrash } from "react-icons/fa";
 import LoadingPage from "../components/LoadingPage";
 import Navbar from "../components/Navbar";
 import PrivateContainer from "../components/PrivateContainer";
 import UserBillComponent from "../components/UserBillComponent";
 import formattedValue from "../helpers/formatValue";
-import { getBill } from "../services/billServices";
+import { deleteBill, getBill } from "../services/billServices";
 import { Wrapper } from "../components/MappedBill";
 import { WrapperTitle } from "./Home";
+import { UserAuth } from "../contexts/UserContext";
 
 export default function BillPage() {
   const { billId } = useParams();
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  const { userData } = UserAuth();
 
   const getBillWithId = async () => {
     return getBill(Number(billId));
   };
 
-  const { data, isLoading, error } = useQuery("bill", getBillWithId, {
+  const { data, isLoading } = useQuery("bill", getBillWithId, {
     retry: false,
     onError: (err: AxiosError) => err,
   });
+
+  const deleteMutation = useMutation(
+    async (params: number) => {
+      return deleteBill(params);
+    },
+    {
+      onSuccess: () => {
+        queryClient.refetchQueries("bill");
+      },
+    }
+  );
 
   const getFriendsListName = () => {
     let friendsStr = "";
@@ -38,6 +55,29 @@ export default function BillPage() {
 
     return friendsStr;
   };
+
+  const deleteBills = async (param: number) => {
+    try {
+      Swal.fire({
+        text: "Vocẽ deseja excluir esta conta?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Excluir",
+        cancelButtonText: "Cancelar",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await deleteMutation.mutateAsync(param);
+          navigate("/");
+          Swal.fire("Pronto!", "Você excluiu esta conta.", "success");
+        }
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   if (isLoading) {
     return <LoadingPage />;
   }
@@ -49,8 +89,21 @@ export default function BillPage() {
         <TopBox>
           <TopWrap>
             <TitleBox>
-              <BillTitle>{data.name}</BillTitle>
-              <BillSubtitle>{getFriendsListName()}</BillSubtitle>
+              <TitleWrap>
+                <BillTitle>{data.name}</BillTitle>
+                <BillSubtitle>{getFriendsListName()}</BillSubtitle>
+              </TitleWrap>
+              {data.ownerId === userData().user.id ? (
+                <FaTrash
+                  size={24}
+                  style={{ color: "#ffffff" }}
+                  onClick={() => {
+                    deleteBills(Number(billId));
+                  }}
+                />
+              ) : (
+                <></>
+              )}
             </TitleBox>
             <TitleBox>
               <BillStatus>Status:</BillStatus>
@@ -116,10 +169,17 @@ const TopBox = styled.div`
 `;
 
 const TitleBox = styled.div`
+  &:first-child {
+    display: flex;
+    justify-content: space-between;
+  }
+
   & + & {
     margin-top: 25px;
   }
 `;
+
+const TitleWrap = styled.div``;
 
 const BillTitle = styled.h1`
   font-size: 30px;
