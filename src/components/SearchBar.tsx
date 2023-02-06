@@ -54,9 +54,7 @@ export function SearchBar({ friendList }: { friendList: FriendList[] }) {
   const isFriend = (user: SearchType) => {
     let amigo = "não";
     friendList.forEach((friend) => {
-      console.log(user.email, friend.email);
       if (friend.email === user.email) {
-        console.log("caiu aq");
         amigo = "sim";
       } else {
         return amigo;
