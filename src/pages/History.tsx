@@ -5,7 +5,6 @@ import styled from "styled-components";
 import LoadingPage from "../components/LoadingPage";
 import MappedBill from "../components/MappedBill";
 import Navbar from "../components/Navbar";
-import PrivateContainer from "../components/PrivateContainer";
 import { getShortBills } from "../services/billServices";
 import { WrapperTitle } from "./Home";
 
@@ -23,18 +22,26 @@ export default function History() {
 
   return (
     <>
-      <PrivateContainer>
+      <HistoryContainer>
         <Wrapper>
           <Title>Histórico</Title>
           <Subtitle>Veja seu histórico e cheque contas!</Subtitle>
         </Wrapper>
         <BillTitle>Suas contas</BillTitle>
         <MappedBill data={data} />
-      </PrivateContainer>
+      </HistoryContainer>
       <Navbar />
     </>
   );
 }
+
+const HistoryContainer = styled.section`
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f7f7f7;
+
+  padding-bottom: 100px;
+`;
 
 const Wrapper = styled.section`
   width: 90%;
