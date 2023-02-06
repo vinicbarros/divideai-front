@@ -14,6 +14,7 @@ import NewBill from "./pages/NewBill";
 import BillPage from "./pages/BillPage";
 import SocialPage from "./pages/SocialPage";
 import History from "./pages/History";
+import UserPage from "./pages/UserPage";
 
 function App() {
   const queryClient = new QueryClient();
@@ -67,6 +68,10 @@ function App() {
               <Route
                 path="/social"
                 element={<SocialPage />}
+              />
+              <Route
+                path="/user"
+                element={<UserPage />}
               />
             </Route>
           </Routes>

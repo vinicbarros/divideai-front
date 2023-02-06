@@ -15,6 +15,7 @@ import { deleteBill, getBill } from "../services/billServices";
 import { Wrapper } from "../components/MappedBill";
 import { WrapperTitle } from "./Home";
 import { UserAuth } from "../contexts/UserContext";
+import Category from "../components/Category";
 
 export default function BillPage() {
   const { billId } = useParams();
@@ -106,10 +107,13 @@ export default function BillPage() {
               )}
             </TitleBox>
             <TitleBox>
-              <BillStatus>Status:</BillStatus>
-              <BillSubStatus status={data.billStatus}>
-                {data.billStatus === "PAID" ? "PAGO" : "PENDENTE"}
-              </BillSubStatus>
+              <InfoWrap>
+                <BillStatus>Status:</BillStatus>
+                <BillSubStatus status={data.billStatus}>
+                  {data.billStatus === "PAID" ? "PAGO" : "PENDENTE"}
+                </BillSubStatus>
+              </InfoWrap>
+              <Category name={data.category.name} />
             </TitleBox>
           </TopWrap>
           <BottomWrap>
@@ -174,12 +178,19 @@ const TitleBox = styled.div`
     justify-content: space-between;
   }
 
+  &:nth-child(2) {
+    display: flex;
+    justify-content: space-between;
+  }
+
   & + & {
     margin-top: 25px;
   }
 `;
 
 const TitleWrap = styled.div``;
+
+const InfoWrap = styled.div``;
 
 const BillTitle = styled.h1`
   font-size: 30px;
