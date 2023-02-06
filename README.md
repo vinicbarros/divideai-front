@@ -8,8 +8,6 @@
 
 ## Features
 
-<hr>
-
 - Sign up
 - Login (Manual and OAuth)
 - Persistent sessions
@@ -28,7 +26,6 @@
 
 ## Motivation
 
-<hr>
 This idea came up when I saw my girlfriend struggling to find out if her house bills had already been paid (she lives with two friends and they share all expenses).
 
 <br>
@@ -43,7 +40,6 @@ So my goal is to improve this project with new features (chat with friends, noti
 
 ## Built with
 
-<hr>
 
 <p>
   <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" />
@@ -65,7 +61,6 @@ So my goal is to improve this project with new features (chat with friends, noti
 
 ## How to run
 
-<hr>
 
 1. Clone this repository
 2. Install all dependencies
@@ -91,7 +86,6 @@ npm start
 
 ## Running application with Docker
 
-<hr>
 
 1. You need to have installed docker and docker-compose to proceed
 2. Run docker compose
@@ -107,7 +101,6 @@ docker-compose up --build
 
 ## Contact
 
-<hr>
 
 Feel free to contact me in Linkedin!
 
