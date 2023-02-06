@@ -69,3 +69,9 @@ export type BillType = {
   }[];
   id: number;
 };
+
+export type ResumeType = {
+  paidBills: number;
+  pendingBills: number;
+  totalPaid: number;
+};

@@ -4,6 +4,7 @@ import {
   BillType,
   ICreateBill,
   ShortBill,
+  ResumeType,
 } from "../types/billTypes";
 import api from "./api";
 
@@ -43,6 +44,22 @@ export async function postPaidBill(billId: number) {
   const config = createAuthHeader();
 
   const response = await api.post(`/bill/${billId}/paid`, {}, config);
+
+  return response;
+}
+
+export async function getInfoResume(): Promise<ResumeType> {
+  const config = createAuthHeader();
+
+  const response = await api.get("/bill/infos/resume", config);
+
+  return response.data as ResumeType;
+}
+
+export async function deleteBill(billId: number) {
+  const config = createAuthHeader();
+
+  const response = await api.delete(`/bill/${billId}`, config);
 
   return response;
 }
