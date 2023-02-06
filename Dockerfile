@@ -1,10 +1,12 @@
 FROM node:16
+ENV NODE_OPTIONS="--max-old-space-size=2048"
 
 WORKDIR /app
 
 COPY . .
 RUN npm i --force
 RUN npm run build
+
 
 RUN mkdir -p /var/www/html
 RUN mv dist/* /var/www/html
