@@ -38,7 +38,7 @@ export const Wrapper = styled.section`
   border-radius: 10px;
 `;
 
-const NotFoundBox = styled.div`
+export const NotFoundBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,6 +53,6 @@ const NotFoundBox = styled.div`
   }
 `;
 
-const ImageBox = styled.img`
+export const ImageBox = styled.img`
   width: 250px;
 `;
