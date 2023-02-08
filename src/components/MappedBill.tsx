@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { ShortBill } from "../types/billTypes";
 import ShortBillComponent from "./ShortBill";
 import notFoundImage from "../assets/images/not_found.svg";
-import { UserAuth } from "../contexts/UserContext";
 
 export default function MappedBill({ data }: { data: ShortBill[] }) {
   return (

@@ -27,7 +27,7 @@ export default function LandingPage() {
         <Title>Crie sua conta na Divide Aí </Title>
         <Subtitle>
           Divide Aí é uma poderosa ferramenta para te salvar de problemas com
-          pagamentos compartilhados!
+          despesas compartilhadas!
         </Subtitle>
         <Button
           cor="#0369c9"

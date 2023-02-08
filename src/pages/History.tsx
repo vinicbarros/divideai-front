@@ -25,7 +25,7 @@ export default function History() {
       <HistoryContainer>
         <Wrapper>
           <Title>Histórico</Title>
-          <Subtitle>Veja seu histórico e cheque contas!</Subtitle>
+          <Subtitle>Veja seu histórico e analise contas!</Subtitle>
         </Wrapper>
         <BillTitle>Suas contas</BillTitle>
         <MappedBill data={data} />

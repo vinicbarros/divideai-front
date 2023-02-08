@@ -89,6 +89,7 @@ export default function NewBill() {
     <Container>
       <Wrapper>
         <Title>Crie uma conta</Title>
+        <UnderTitle>Pagar fica mais fácil dividindo com amigos!</UnderTitle>
         <FormBill onSubmit={submitForm}>
           <SubTitle>Categoria</SubTitle>
           <SelectCategory
@@ -118,7 +119,7 @@ export default function NewBill() {
               </option>
             ))}
           </SelectCategory>
-          <SubTitle>Status do pagamento</SubTitle>
+          <SubTitle>Status da conta</SubTitle>
           <StatusWrap>
             <RadioBox>
               <RadioInput
@@ -142,10 +143,10 @@ export default function NewBill() {
                   setBillData({ ...billData, billStatus: e.target.value });
                 }}
               />
-              <h4>PAGO</h4>
+              <h4>PAGA</h4>
             </RadioBox>
           </StatusWrap>
-          <SubTitle>Nome do pagamento</SubTitle>
+          <SubTitle>Nome da conta</SubTitle>
           <Input
             type="text"
             placeholder="Conta de internet, água..."
@@ -156,7 +157,7 @@ export default function NewBill() {
               setBillData({ ...billData, name: e.target.value });
             }}
           />
-          <SubTitle>Valor do pagamento em R$</SubTitle>
+          <SubTitle>Valor da conta em R$</SubTitle>
           <CurrencyInput
             allowDecimals
             prefix="R$ "
@@ -249,7 +250,14 @@ const Title = styled.h1`
   color: #373737;
   font-size: 25px;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+`;
+
+const UnderTitle = styled.h5`
+  color: #bdbdbd;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 15px;
 `;
 
 const SubTitle = styled.h2`
