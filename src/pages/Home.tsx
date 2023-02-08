@@ -72,7 +72,7 @@ export default function Home() {
           </InfoBox>
         </TopBox>
         <WrapperTitle>Últimos pagamentos</WrapperTitle>
-        <MappedBill data={shortBillData.data.slice(0, 5)} />
+        <MappedBill data={shortBillData.data.slice(0, 4)} />
       </PrivateContainer>
       <Navbar />
     </>

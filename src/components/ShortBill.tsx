@@ -37,8 +37,8 @@ export default function ShortBillComponent({
 
 const ShortBillWrapper = styled.main`
   background-color: #ffffff;
-  height: 80px;
-  padding: 10px;
+  min-height: 80px;
+  padding: 15px;
   width: 100%;
 
   display: flex;
@@ -59,6 +59,7 @@ const ShortBillWrapper = styled.main`
 
 const WrapInfoBox = styled.div`
   justify-content: space-between;
+  align-items: center;
 `;
 
 const BillTitle = styled.h2`
@@ -66,6 +67,7 @@ const BillTitle = styled.h2`
   font-weight: 500;
   font-size: 18px;
   margin-bottom: 5px;
+  margin-top: 5px;
 `;
 
 const DividedBy = styled.p`

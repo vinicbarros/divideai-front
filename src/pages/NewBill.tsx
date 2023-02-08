@@ -1,7 +1,9 @@
+/* eslint-disable indent */
 /* eslint-disable consistent-return */
 /* eslint-disable react/jsx-no-useless-fragment */
 import dayjs from "dayjs";
 import { useState } from "react";
+import CurrencyInput from "react-currency-input-field";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -10,6 +12,7 @@ import Swal from "sweetalert2";
 import Container from "../common/ContainerWrap";
 import { FriendSearchBar } from "../components/FriendSearchBar";
 import { UserAuth } from "../contexts/UserContext";
+import formattedValue from "../helpers/formatValue";
 import { getBillsCategories, postNewBill } from "../services/billServices";
 import Button from "../style/Button";
 import { ICreateBill, UsersBill } from "../types/billTypes";
@@ -31,20 +34,36 @@ export default function NewBill() {
       value: 0,
     },
   ] as UsersBill[]);
-  const [error, setError] = useState("");
+
+  const suggestion = billData.value / usersBill.length;
 
   const updateValueChanged =
-    (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    (index: number) =>
+    (value: string | undefined): void => {
       const newArr = [...usersBill];
+      const rawValue = value === undefined ? "undefined" : value;
 
-      newArr[index].value = Number(e.target.value) * 100;
-
+      if (value) {
+        const changeVal = rawValue.replace(",", ".");
+        newArr[index].value = Number(changeVal) * 100;
+      }
       setUsersBill(newArr);
     };
+
+  const validateValue = (value: string | undefined): void => {
+    const rawValue = value === undefined ? "undefined" : value;
+
+    if (value) {
+      const changeVal = rawValue.replace(",", ".");
+      setBillData({ ...billData, value: Number(changeVal) * 100 });
+    }
+  };
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const body = { ...billData, usersBill };
+
+    console.log(body);
     let sum = 0;
     body.usersBill.forEach((each) => {
       sum += each.value;
@@ -138,14 +157,15 @@ export default function NewBill() {
             }}
           />
           <SubTitle>Valor do pagamento em R$</SubTitle>
-          <Input
-            type="number"
-            placeholder="120,99"
-            name="value"
+          <CurrencyInput
+            allowDecimals
+            prefix="R$ "
+            decimalSeparator=","
+            groupSeparator="."
+            className="main-payment"
+            placeholder="R$ 129,99"
             required
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              setBillData({ ...billData, value: Number(e.target.value) * 100 });
-            }}
+            onValueChange={validateValue}
           />
           <SubTitle>Data de vencimento</SubTitle>
           <Input
@@ -173,11 +193,19 @@ export default function NewBill() {
                   {user.name}
                   {user.name === userData().user.name ? "(Eu)" : <></>}
                 </h4>
-                <ValueInput
-                  type="number"
-                  name={user.name}
+                <CurrencyInput
+                  allowDecimals
+                  prefix="R$ "
+                  decimalSeparator=","
+                  groupSeparator="."
+                  className="user-payment"
+                  placeholder={
+                    Number.isNaN(suggestion)
+                      ? "Insira um valor"
+                      : `Ex: ${formattedValue(suggestion)}`
+                  }
                   required
-                  onChange={updateValueChanged(index)}
+                  onValueChange={updateValueChanged(index)}
                 />
               </PeopleWrapper>
             ))}
@@ -232,7 +260,44 @@ const SubTitle = styled.h2`
   font-weight: 600;
 `;
 
-const FormBill = styled.form``;
+const FormBill = styled.form`
+  .main-payment {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #828282;
+    outline: none;
+    color: #2a2a2a;
+    font-family: "Inter";
+    font-size: 18px;
+    border-radius: 10px;
+
+    & + & {
+      margin-top: 14px;
+    }
+
+    &::placeholder {
+      color: #828282;
+    }
+  }
+
+  .user-payment {
+    font-family: "Inter";
+    width: 120px;
+    height: 30px;
+    border-radius: 4px;
+    margin-right: 10px;
+    background-color: #ffffff;
+    border: none;
+    padding-inline: 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  }
+
+  .user-payment::placeholder {
+    color: #242424;
+    font-weight: 500;
+  }
+`;
 
 const SelectCategory = styled.select`
   border: 1px solid #828282;
@@ -241,7 +306,7 @@ const SelectCategory = styled.select`
   height: 55px;
   border-radius: 5px;
   padding: 16px;
-  color: #828282;
+  color: #585858;
   font-size: 18px;
   margin-bottom: 10px;
 `;
@@ -302,29 +367,22 @@ const PeopleWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: #e7e7e7;
-  height: 50px;
+  height: 60px;
   border-radius: 5px;
 
   & + & {
-    margin-top: 10px;
+    margin-top: 12px;
   }
 
   h4 {
     margin-left: 10px;
-    color: #828282;
+    color: #373737;
     font-weight: bold;
   }
-`;
 
-const ValueInput = styled.input`
-  width: 70px;
-  height: 25px;
-  border-radius: 4px;
-  margin-right: 10px;
-  background-color: #cfcfcf;
-  border: none;
-  border-bottom: 1px solid #828282;
-  padding-inline: 5px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
 `;
 
 const ButtonWrap = styled.div`

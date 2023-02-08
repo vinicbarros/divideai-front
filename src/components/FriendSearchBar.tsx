@@ -53,10 +53,10 @@ export function FriendSearchBar({
         />
         <SearchIcon>
           {wordEntered.length === 0 ? (
-            <BsSearch color="#C6C6C6" />
+            <BsSearch color="#828282" />
           ) : (
             <GrClose
-              color="#C6C6C6"
+              color="#828282"
               onClick={close}
             />
           )}
@@ -116,8 +116,8 @@ const SearchInputs = styled.div<ISearchInput>`
     font-size: 18px;
   }
   input::placeholder {
-    color: #c6c6c6;
-    font-size: 16px;
+    color: #828282;
+    font-size: 18px;
   }
   input:focus {
     outline: none;
