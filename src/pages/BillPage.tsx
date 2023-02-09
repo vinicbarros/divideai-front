@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Swal from "sweetalert2";
 import { FaTrash } from "react-icons/fa";
+import { useState } from "react";
 import LoadingPage from "../components/LoadingPage";
 import Navbar from "../components/Navbar";
 import PrivateContainer from "../components/PrivateContainer";
@@ -22,6 +23,7 @@ export default function BillPage() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { userData } = UserAuth();
+  const [copied, setCopied] = useState(false);
 
   const getBillWithId = async () => {
     return getBill(Number(billId));
@@ -43,10 +45,18 @@ export default function BillPage() {
     }
   );
 
+  if (!data) return <LoadingPage />;
+
   const getFriendsListName = () => {
     let friendsStr = "";
 
-    data?.userBill.forEach((user, index) => {
+    if (data.userBill.length > 4) {
+      return `${data?.userBill[0].users.name}, ${
+        data?.userBill[1].users.name
+      } e mais ${data.userBill.length - 2}`;
+    }
+
+    data.userBill.forEach((user, index) => {
       if (index === data.userBill.length - 1) {
         friendsStr += `${user.users.name}`;
       } else {
@@ -79,56 +89,63 @@ export default function BillPage() {
     }
   };
 
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(data.pixKey);
+    setCopied(true);
+  };
+
   if (isLoading) {
     return <LoadingPage />;
   }
-  if (!data) return <LoadingPage />;
 
   return (
     <>
       <PrivateContainer>
         <TopBox>
-          <TopWrap>
-            <TitleBox>
-              <TitleWrap>
-                <BillTitle>{data.name}</BillTitle>
-                <BillSubtitle>{getFriendsListName()}</BillSubtitle>
-              </TitleWrap>
-              {data.ownerId === userData().user.id ? (
-                <FaTrash
-                  size={24}
-                  style={{ color: "#ffffff" }}
-                  onClick={() => {
-                    deleteBills(Number(billId));
-                  }}
-                />
-              ) : (
-                <></>
-              )}
-            </TitleBox>
-            <TitleBox>
-              <InfoWrap>
-                <BillStatus>Status:</BillStatus>
-                <BillSubStatus status={data.billStatus}>
-                  {data.billStatus === "PAID" ? "PAGO" : "PENDENTE"}
-                </BillSubStatus>
-              </InfoWrap>
-              <Category name={data.category.name} />
-            </TitleBox>
-          </TopWrap>
-          <BottomWrap>
-            <TotalBox>
-              <TotalTitle>Total:</TotalTitle>
-              <TotalValue>{formattedValue(data.value)}</TotalValue>
-            </TotalBox>
-            <TotalBox>
-              <DateTitle>Data de vencimento:</DateTitle>
-              <DateSubtitle>
-                {dayjs(data.expireDate).format("DD/MM/YYYY")}
-              </DateSubtitle>
-            </TotalBox>
-          </BottomWrap>
+          <TitleWrap>
+            <Category name={data.category.name} />
+            <TextWrap>
+              <BillTitle>{data.name}</BillTitle>
+              <BillSubtitle>{getFriendsListName()}</BillSubtitle>
+            </TextWrap>
+          </TitleWrap>
+          {data.ownerId === userData().user.id ? (
+            <FaTrash
+              size={24}
+              style={{ color: "#ffffff" }}
+              onClick={() => {
+                deleteBills(Number(billId));
+              }}
+            />
+          ) : (
+            <></>
+          )}
         </TopBox>
+
+        <WrapperTitle>Resumo:</WrapperTitle>
+        <MiddleContainer>
+          <MiddleWrap>
+            <Title>Total:</Title>
+            <Subtitle>{formattedValue(data.value)}</Subtitle>
+          </MiddleWrap>
+          <MiddleWrap>
+            <Title>Status:</Title>
+            <BillSubStatus status={data.billStatus}>
+              {data.billStatus === "PAID" ? "Pago" : "Pendente"}
+            </BillSubStatus>
+          </MiddleWrap>
+          <MiddleWrap>
+            <Title>Vence em:</Title>
+            <Subtitle>{dayjs(data.expireDate).format("DD/MM/YYYY")}</Subtitle>
+          </MiddleWrap>
+          <MiddleWrap>
+            <Title>Chave PIX:</Title>
+            <Copy onClick={copyToClipboard}>
+              {copied ? "Copiado!" : "Copiar"}
+            </Copy>
+          </MiddleWrap>
+        </MiddleContainer>
+
         <WrapperTitle>Pessoas</WrapperTitle>
         <Wrapper>
           {data.userBill.map((user) => (
@@ -137,6 +154,8 @@ export default function BillPage() {
               userBill={user}
               billId={Number(billId)}
               queryClient={queryClient}
+              billName={data.name}
+              pixKey={data.pixKey}
             />
           ))}
         </Wrapper>
@@ -146,62 +165,64 @@ export default function BillPage() {
   );
 }
 
-const TopWrap = styled.div`
-  width: 90%;
-  margin-inline: auto;
-  padding-block: 20px;
+const TopBox = styled.div`
+  background-color: #0369c9;
+  min-height: 80px;
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  padding-inline: 20px;
+  padding-block: 10px;
+  align-items: center;
+  justify-content: space-between;
 `;
 
-const BottomWrap = styled.div`
-  width: 90%;
-  margin-inline: auto;
-  padding-block: 20px;
+const TitleWrap = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
 `;
 
-const TopBox = styled.div`
-  background-color: #0369c9;
-  height: 300px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+const TextWrap = styled.div`
+  margin-left: 20px;
 `;
 
-const TitleBox = styled.div`
-  &:first-child {
-    display: flex;
-    justify-content: space-between;
-  }
+const MiddleContainer = styled.section`
+  width: 90%;
+  margin-inline: auto;
+  margin-top: 10px;
+  padding: 12px;
+  background-color: #ffffff;
+  border-radius: 5px;
+`;
 
-  &:nth-child(2) {
-    display: flex;
-    justify-content: space-between;
-  }
+const MiddleWrap = styled.div`
+  display: flex;
+  align-items: center;
+  padding-block: 10px;
 
   & + & {
-    margin-top: 25px;
+    border-top: 1px solid #838383;
   }
 `;
 
-const TitleWrap = styled.div``;
-
-const InfoWrap = styled.div``;
-
 const BillTitle = styled.h1`
-  font-size: 30px;
+  font-size: 24px;
+  max-width: 240px;
   font-weight: bold;
   color: #ffffff;
+`;
+
+const BillSubtitle = styled.h4`
+  margin-top: 4px;
+  letter-spacing: 0.1px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
 `;
 
 const BillStatus = styled.h2`
-  font-size: 20px;
-  font-weight: bold;
-  color: #ffffff;
+  font-size: 16px;
+  color: #838383;
+  margin-right: 5px;
 `;
 
 type BillStatusType = {
@@ -209,46 +230,24 @@ type BillStatusType = {
 };
 
 const BillSubStatus = styled.h3<BillStatusType>`
-  font-size: 24px;
-  margin-top: 5px;
+  font-size: 16px;
   font-weight: bold;
   color: ${(props) => (props.status === "PAID" ? "#43A048" : "#F44336")};
 `;
 
-const BillSubtitle = styled.h4`
-  margin-top: 4px;
-  letter-spacing: 0.1px;
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: 500;
-`;
-
-const TotalBox = styled.div``;
-
-const TotalTitle = styled.h2`
-  color: #ffffff;
-  font-size: 25px;
-  font-weight: 600;
-  margin-bottom: 15px;
-`;
-
-const TotalValue = styled.h3`
-  color: #fb8a00;
-  font-size: 28px;
-  font-weight: 600;
-`;
-
-const DateTitle = styled(TotalTitle)`
+const Title = styled.h2`
+  color: #838383;
   font-size: 16px;
-  width: 160px;
-  text-align: right;
-  margin-right: 0;
+  margin-right: 5px;
 `;
 
-const DateSubtitle = styled.h3`
-  color: #fb8a00;
-  font-size: 20px;
+const Subtitle = styled.h3`
+  color: #2a2a2a;
+  font-size: 16px;
   font-weight: 600;
-  text-align: right;
-  margin-bottom: 2px;
+`;
+
+const Copy = styled(Subtitle)`
+  color: #73c27a;
+  text-decoration: underline;
 `;

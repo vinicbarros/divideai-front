@@ -34,6 +34,7 @@ export type CategoryType = {
 export interface ICreateBill {
   name: string;
   value: number;
+  pixKey: string;
   categoryId: number;
   billStatus: string;
   expireDate: Date;
@@ -53,6 +54,7 @@ export type UsersBill = {
 export type BillType = {
   name: string;
   value: number;
+  pixKey: string;
   ownerId: number;
   expireDate: Date;
   billStatus: string;

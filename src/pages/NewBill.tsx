@@ -63,7 +63,6 @@ export default function NewBill() {
     e.preventDefault();
     const body = { ...billData, usersBill };
 
-    console.log(body);
     let sum = 0;
     body.usersBill.forEach((each) => {
       sum += each.value;
@@ -77,7 +76,6 @@ export default function NewBill() {
       });
     }
     try {
-      console.log(body);
       await postNewBill(body);
       toast.success("Conta criada com sucesso!");
       navigate("/");
@@ -167,6 +165,17 @@ export default function NewBill() {
             placeholder="R$ 129,99"
             required
             onValueChange={validateValue}
+          />
+          <SubTitle>Chave pix</SubTitle>
+          <Input
+            type="text"
+            placeholder="Para as pessoas pagarem a conta"
+            name="pixKey"
+            autoComplete="off"
+            required
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              setBillData({ ...billData, pixKey: e.target.value });
+            }}
           />
           <SubTitle>Data de vencimento</SubTitle>
           <Input
@@ -321,7 +330,7 @@ const SelectCategory = styled.select`
 
 const StatusWrap = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: fit-content;
   justify-content: left;
   width: 50%;
@@ -333,7 +342,7 @@ const StatusWrap = styled.div`
 
   h5 {
     color: #f44336;
-    margin-left: 10px;
+    margin-inline: 10px;
   }
 `;
 

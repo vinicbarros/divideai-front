@@ -1,9 +1,9 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-nested-ternary */
 import styled from "styled-components";
-import { BsCheckSquareFill, BsCheckSquare } from "react-icons/bs";
+import { BsCheckSquareFill, BsCheckSquare, BsWhatsapp } from "react-icons/bs";
 import { AiOutlineCheck } from "react-icons/ai";
 import { QueryClient, useMutation } from "react-query";
-import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { UserBillType } from "../types/userTypes";
 import { postPaidBill } from "../services/billServices";
@@ -14,10 +14,14 @@ export default function UserBillComponent({
   userBill,
   billId,
   queryClient,
+  billName,
+  pixKey,
 }: {
   userBill: UserBillType;
   billId: number;
   queryClient: QueryClient;
+  billName: string;
+  pixKey: string;
 }) {
   const { userData } = UserAuth();
   const checkPaidMutation = useMutation(
@@ -30,6 +34,14 @@ export default function UserBillComponent({
       },
     }
   );
+
+  const whatsappMessage = encodeURIComponent(`Olá, ${userBill.users.name}! 
+  Parece que você ainda não pagou a conta ${billName} no valor de:
+  ${formattedValue(userBill.value)}. 
+  Por favor, pague o quanto antes!
+  Chave PIX: ${pixKey}
+  
+  - Equipe Divide Aí.`);
 
   async function checkPaid() {
     try {
@@ -62,6 +74,16 @@ export default function UserBillComponent({
             ? `Pagou ${formattedValue(userBill.value)}`
             : `Não pagou ${formattedValue(userBill.value)}`}
         </StatusSubTitle>
+        {userBill.paymentStatus === "PAID" ? (
+          ""
+        ) : (
+          <WhatsappLink
+            href={`whatsapp://send?text=${whatsappMessage}`}
+            data-action="share/whatsapp/share"
+          >
+            Compartilhar <BsWhatsapp />
+          </WhatsappLink>
+        )}
       </StatusBox>
       <StatusBox>
         {userBill.users.name === userData().user.name ? (
@@ -100,7 +122,7 @@ export default function UserBillComponent({
 
 const Container = styled.div`
   background-color: #ffffff;
-  height: 80px;
+  min-height: 90px;
   padding: 10px;
   width: 100%;
 
@@ -136,7 +158,19 @@ type StatusSubTitleType = {
 const StatusSubTitle = styled.p<StatusSubTitleType>`
   font-weight: 400;
   font-size: 15px;
+  margin-bottom: 10px;
   color: ${(props) => (props.status === "PAID" ? "#43A048" : "#d33")};
 `;
 
 const IconBox = styled.div``;
+
+const WhatsappLink = styled.a`
+  font-size: 12px;
+  color: #204121;
+  display: flex;
+  align-items: center;
+
+  svg {
+    margin-left: 4px;
+  }
+`;
