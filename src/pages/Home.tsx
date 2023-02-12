@@ -1,10 +1,11 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable consistent-return */
-import { AxiosError } from "axios";
+import { AxiosError, HttpStatusCode } from "axios";
 import { useQuery } from "react-query";
 import styled from "styled-components";
 import { GoBell } from "react-icons/go";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import LoadingPage from "../components/LoadingPage";
 import Navbar from "../components/Navbar";
 import PrivateContainer from "../components/PrivateContainer";
@@ -13,6 +14,7 @@ import MappedBill from "../components/MappedBill";
 import formattedValue from "../helpers/formatValue";
 
 export default function Home() {
+  const navigate = useNavigate();
   const shortBillData = useQuery("bills", getShortBills, {
     retry: false,
     onError: (err: AxiosError) => err,
@@ -35,6 +37,11 @@ export default function Home() {
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("userData") as string));
   }, []);
+
+  if (shortBillData.error?.response?.status === HttpStatusCode.Unauthorized) {
+    localStorage.removeItem("userData");
+    navigate("/landing-page");
+  }
 
   if (shortBillData.isLoading) {
     return <LoadingPage />;

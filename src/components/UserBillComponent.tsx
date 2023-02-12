@@ -35,13 +35,13 @@ export default function UserBillComponent({
     }
   );
 
-  const whatsappMessage = encodeURIComponent(`Olá, ${userBill.users.name}! 
-  Parece que você ainda não pagou a conta ${billName} no valor de:
-  ${formattedValue(userBill.value)}. 
-  Por favor, pague o quanto antes!
-  Chave PIX: ${pixKey}
+  const whatsappMessage = encodeURIComponent(`Olá, ${userBill.users.name}!
+Parece que você ainda não pagou a conta ${billName} no valor de:
+${formattedValue(userBill.value)}.
+Por favor, pague o quanto antes!
+Chave PIX: ${pixKey}
   
-  - Equipe Divide Aí.`);
+- Equipe Divide Aí.`);
 
   async function checkPaid() {
     try {

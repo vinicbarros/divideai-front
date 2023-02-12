@@ -23,7 +23,6 @@ export default function BillPage() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { userData } = UserAuth();
-  const [copied, setCopied] = useState(false);
 
   const getBillWithId = async () => {
     return getBill(Number(billId));
@@ -89,11 +88,6 @@ export default function BillPage() {
     }
   };
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(data.pixKey);
-    setCopied(true);
-  };
-
   if (isLoading) {
     return <LoadingPage />;
   }
@@ -140,9 +134,7 @@ export default function BillPage() {
           </MiddleWrap>
           <MiddleWrap>
             <Title>Chave PIX:</Title>
-            <Copy onClick={copyToClipboard}>
-              {copied ? "Copiado!" : "Copiar"}
-            </Copy>
+            <Copy>{data.pixKey}</Copy>
           </MiddleWrap>
         </MiddleContainer>
 
@@ -219,12 +211,6 @@ const BillSubtitle = styled.h4`
   font-weight: 500;
 `;
 
-const BillStatus = styled.h2`
-  font-size: 16px;
-  color: #838383;
-  margin-right: 5px;
-`;
-
 type BillStatusType = {
   status: string;
 };
@@ -248,6 +234,8 @@ const Subtitle = styled.h3`
 `;
 
 const Copy = styled(Subtitle)`
+  width: 200px;
+  font-size: 14px;
   color: #73c27a;
   text-decoration: underline;
 `;
