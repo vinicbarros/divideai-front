@@ -1,9 +1,11 @@
+<div align="center"><img src="https://i.imgur.com/S9iBF0N.png"></img></div>
 <hr>
 <h1 align=center>Divide Aí</h1>
 <h3 align=center>The easiest way to share a bill with your friends!</h3>
 <br>
 <div align=center style="display:flex; justify-content: center; gap:5%">
     <h4>Divide Ai is a web application built with React.JS for people who struggle to split bills with others without any control of who paid and who didn't. One of the main focus of this app is to help people who lives together control expenses.</h4>
+    <h5>Here you can see the full repository of this application: https://github.com/vinicbarros/DivideAi</h5>
 </div>
 
 ## Features
