@@ -26,6 +26,11 @@
 
 <br>
 
+<h2 align=center>Sign-In/Sign-Up Pages</h2>
+<div align=center>
+<img style=" width: 600px" src="https://i.imgur.com/tp6qdv5.png"></img>
+</div>
+
 ## Motivation
 
 This idea came up when I saw my girlfriend struggling to find out if her house bills had already been paid (she lives with two friends and they share all expenses).
