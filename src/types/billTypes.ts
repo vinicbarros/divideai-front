@@ -77,3 +77,5 @@ export type ResumeType = {
   pendingBills: number;
   totalPaid: number;
 };
+
+export type BillData = Omit<ICreateBill, "usersBill">;
