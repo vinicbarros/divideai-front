@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { UserAuth } from "../../contexts/UserContext";
 import { deleteBill } from "../../services/billServices";
 import { BillType } from "../../types/billTypes";
-import Category from "../Category";
+import Category from "../Other/Category";
 
 export default function BillHeader({
   billId,

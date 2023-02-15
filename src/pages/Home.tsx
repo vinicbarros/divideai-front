@@ -3,11 +3,11 @@ import { AxiosError, HttpStatusCode } from "axios";
 import { useQuery } from "react-query";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import LoadingPage from "../components/LoadingPage";
-import Navbar from "../components/Navbar";
-import PrivateContainer from "../components/PrivateContainer";
+import LoadingPage from "../components/common/LoadingPage";
+import Navbar from "../components/common/Navbar";
+import PrivateContainer from "../components/Other/PrivateContainer";
 import { getShortBills } from "../services/billServices";
-import MappedBill from "../components/MappedBill";
+import MappedBill from "../components/common/MappedBill";
 import Header from "../components/HomePage/Header";
 
 export default function Home() {

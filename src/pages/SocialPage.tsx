@@ -4,12 +4,12 @@ import { useQuery, useQueryClient } from "react-query";
 import styled from "styled-components";
 
 import { useState } from "react";
-import Navbar from "../components/Navbar";
-import PrivateContainer from "../components/PrivateContainer";
-import { SearchBar } from "../components/SearchBar";
+import Navbar from "../components/common/Navbar";
+import PrivateContainer from "../components/Other/PrivateContainer";
+import { SearchBar } from "../components/SearchBar/SearchBar";
 import { getFriendsList } from "../services/socialService";
-import FriendListSection from "../components/FriendListSection";
-import RequestsSection from "../components/RequestsSection";
+import FriendListSection from "../components/Social/FriendListSection";
+import RequestsSection from "../components/Social/RequestsSection";
 
 export default function SocialPage() {
   const queryClient = useQueryClient();

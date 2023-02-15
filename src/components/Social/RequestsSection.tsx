@@ -24,8 +24,8 @@ import {
 import {
   acceptRejectFriend,
   getFriendRequest,
-} from "../services/socialService";
-import SocialImage from "../assets/images/social.svg";
+} from "../../services/socialService";
+import SocialImage from "../../assets/images/social.svg";
 
 export default function RequestsSection({
   queryClient,

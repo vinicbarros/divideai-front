@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { BiExit } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import PrivateContainer from "../components/PrivateContainer";
+import Navbar from "../components/common/Navbar";
+import PrivateContainer from "../components/Other/PrivateContainer";
 import { UserAuth } from "../contexts/UserContext";
 import BuildImage from "../assets/images/building_image.svg";
-import { ImageBox, NotFoundBox } from "../components/MappedBill";
+import { ImageBox, NotFoundBox } from "../components/common/MappedBill";
 
 export default function UserPage() {
   const { userData } = UserAuth();

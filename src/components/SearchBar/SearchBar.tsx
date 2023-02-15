@@ -6,10 +6,10 @@ import { DebounceInput } from "react-debounce-input";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useMutation } from "react-query";
-import { searchNewFriends } from "../services/searchService";
-import { SearchType } from "../types/searchTypes";
-import { FriendList } from "../types/socialType";
-import { sendFriendRequest } from "../services/socialService";
+import { searchNewFriends } from "../../services/searchService";
+import { SearchType } from "../../types/searchTypes";
+import { FriendList } from "../../types/socialType";
+import { sendFriendRequest } from "../../services/socialService";
 
 export function SearchBar({ friendList }: { friendList: FriendList[] }) {
   const [wordEntered, setWordEntered] = useState("");

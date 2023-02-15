@@ -3,9 +3,9 @@ import dayjs from "dayjs";
 import "dayjs/locale/pt-br";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import formattedValue from "../helpers/formatValue";
-import { IShortBillMapped } from "../types/billTypes";
-import Category from "./Category";
+import formattedValue from "../../helpers/formatValue";
+import { IShortBillMapped } from "../../types/billTypes";
+import Category from "../Other/Category";
 
 export default function ShortBillComponent({
   shortBill,

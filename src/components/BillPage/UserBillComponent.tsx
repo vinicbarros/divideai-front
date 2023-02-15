@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-nested-ternary */
 import styled from "styled-components";
@@ -75,7 +76,8 @@ Chave PIX: ${pixKey}
             ? `Pagou ${formattedValue(userBill.value)}`
             : `Não pagou ${formattedValue(userBill.value)}`}
         </StatusSubTitle>
-        {userBill.paymentStatus === "PAID" ? (
+        {userBill.paymentStatus === "PAID" ||
+        userData().user.name === userBill.users.name ? (
           ""
         ) : (
           <WhatsappLink

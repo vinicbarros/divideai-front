@@ -6,9 +6,9 @@ import { GrLinkNext } from "react-icons/gr";
 import styled from "styled-components";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
-import SocialImage from "../assets/images/social.svg";
-import { FriendList } from "../types/socialType";
-import { deleteFriendRequest } from "../services/socialService";
+import SocialImage from "../../assets/images/social.svg";
+import { FriendList } from "../../types/socialType";
+import { deleteFriendRequest } from "../../services/socialService";
 
 export default function FriendListSection({
   queryClient,

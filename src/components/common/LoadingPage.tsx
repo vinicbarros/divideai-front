@@ -1,6 +1,6 @@
 import { TailSpin } from "react-loader-spinner";
 import styled from "styled-components";
-import Container from "../common/ContainerWrap";
+import Container from "../../common/ContainerWrap";
 
 export default function LoadingPage() {
   return (

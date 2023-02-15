@@ -2,12 +2,12 @@
 import { AxiosError } from "axios";
 import { useQuery, useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
-import LoadingPage from "../components/LoadingPage";
-import Navbar from "../components/Navbar";
-import PrivateContainer from "../components/PrivateContainer";
+import LoadingPage from "../components/common/LoadingPage";
+import Navbar from "../components/common/Navbar";
+import PrivateContainer from "../components/Other/PrivateContainer";
 import UserBillComponent from "../components/BillPage/UserBillComponent";
 import { getBill } from "../services/billServices";
-import { Wrapper } from "../components/MappedBill";
+import { Wrapper } from "../components/common/MappedBill";
 import { WrapperTitle } from "./Home";
 import BillHeader from "../components/BillPage/BillHeader";
 import ResumeBill from "../components/BillPage/ResumeBill";

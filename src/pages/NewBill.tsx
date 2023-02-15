@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import styled from "styled-components";
 import Swal from "sweetalert2";
 import Container from "../common/ContainerWrap";
-import { FriendSearchBar } from "../components/FriendSearchBar";
+import { FriendSearchBar } from "../components/SearchBar/FriendSearchBar";
 import BillForm from "../components/NewBill/BillForm";
 import ButtonBottom from "../components/NewBill/ButtonBottom";
 import InputsForm from "../components/NewBill/InputsForm";

@@ -4,9 +4,9 @@ import { BsSearch, BsPersonCircle } from "react-icons/bs";
 import { GrClose } from "react-icons/gr";
 import { DebounceInput } from "react-debounce-input";
 import { useState } from "react";
-import { searchFriendList } from "../services/searchService";
-import { SearchType } from "../types/searchTypes";
-import { UsersBill } from "../types/billTypes";
+import { searchFriendList } from "../../services/searchService";
+import { SearchType } from "../../types/searchTypes";
+import { UsersBill } from "../../types/billTypes";
 
 export function FriendSearchBar({
   usersBill,

@@ -2,9 +2,9 @@
 import { AxiosError } from "axios";
 import { useQuery } from "react-query";
 import styled from "styled-components";
-import LoadingPage from "../components/LoadingPage";
-import MappedBill from "../components/MappedBill";
-import Navbar from "../components/Navbar";
+import LoadingPage from "../components/common/LoadingPage";
+import MappedBill from "../components/common/MappedBill";
+import Navbar from "../components/common/Navbar";
 import { getShortBills } from "../services/billServices";
 import { WrapperTitle } from "./Home";
 
