@@ -6,7 +6,7 @@ const Button = styled.button<IButtonProps>`
   background-color: ${(props) => props.cor};
   color: ${(props) => props.fcor};
   height: 55px;
-  border: ${(props) => props.border};
+  border: ${(props) => (props.border ? props.border : "none")};
   margin-top: 15px;
   font-size: 18px;
   font-family: "Inter";

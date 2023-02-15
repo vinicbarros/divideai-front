@@ -15,6 +15,7 @@ import BillPage from "./pages/BillPage";
 import SocialPage from "./pages/SocialPage";
 import History from "./pages/History";
 import UserPage from "./pages/UserPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   const queryClient = new QueryClient();
@@ -72,6 +73,10 @@ function App() {
               <Route
                 path="/user"
                 element={<UserPage />}
+              />
+              <Route
+                path="*"
+                element={<NotFoundPage />}
               />
             </Route>
           </Routes>
