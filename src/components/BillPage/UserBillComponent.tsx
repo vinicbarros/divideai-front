@@ -5,10 +5,10 @@ import { BsCheckSquareFill, BsCheckSquare, BsWhatsapp } from "react-icons/bs";
 import { AiOutlineCheck } from "react-icons/ai";
 import { QueryClient, useMutation } from "react-query";
 import Swal from "sweetalert2";
-import { UserBillType } from "../types/userTypes";
-import { postPaidBill } from "../services/billServices";
-import { UserAuth } from "../contexts/UserContext";
-import formattedValue from "../helpers/formatValue";
+import { UserBillType } from "../../types/userTypes";
+import { postPaidBill } from "../../services/billServices";
+import { UserAuth } from "../../contexts/UserContext";
+import formattedValue from "../../helpers/formatValue";
 
 export default function UserBillComponent({
   userBill,
@@ -24,6 +24,7 @@ export default function UserBillComponent({
   pixKey: string;
 }) {
   const { userData } = UserAuth();
+
   const checkPaidMutation = useMutation(
     async () => {
       return postPaidBill(billId);
