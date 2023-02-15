@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-no-useless-fragment */
-/* eslint-disable consistent-return */
 import { AxiosError, HttpStatusCode } from "axios";
 import { useQuery } from "react-query";
 import styled from "styled-components";
