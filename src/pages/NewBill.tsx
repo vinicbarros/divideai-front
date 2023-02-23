@@ -1,13 +1,8 @@
 /* eslint-disable consistent-return */
 /* eslint-disable react/jsx-no-useless-fragment */
-import dayjs from "dayjs";
 import { useState } from "react";
-import CurrencyInput from "react-currency-input-field";
 import { useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import styled from "styled-components";
-import Swal from "sweetalert2";
 import Container from "../common/ContainerWrap";
 import { FriendSearchBar } from "../components/SearchBar/FriendSearchBar";
 import BillForm from "../components/NewBill/BillForm";
@@ -15,10 +10,8 @@ import ButtonBottom from "../components/NewBill/ButtonBottom";
 import InputsForm from "../components/NewBill/InputsForm";
 import ShareWith from "../components/NewBill/ShareWith";
 import { UserAuth } from "../contexts/UserContext";
-import formattedValue from "../helpers/formatValue";
-import { getBillsCategories, postNewBill } from "../services/billServices";
-import Button from "../style/Button";
-import { BillData, ICreateBill, UsersBill } from "../types/billTypes";
+import { getBillsCategories } from "../services/billServices";
+import { BillData, UsersBill } from "../types/billTypes";
 
 export default function NewBill() {
   const categories = useQuery("categories", getBillsCategories, {
